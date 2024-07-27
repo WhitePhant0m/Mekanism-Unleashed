@@ -1,6 +1,5 @@
 package dev.wp.mekanism_unleashed.mixin;
 
-import dev.wp.mekanism_unleashed.MekanismUnleashed;
 import dev.wp.mekanism_unleashed.MekanismUnleashedConfig;
 import dev.wp.mekanism_unleashed.Temp;
 import mekanism.api.Upgrade;
