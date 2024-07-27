@@ -19,11 +19,6 @@ public abstract class MixinUpgrade {
 
     @ModifyVariable(method = "<init>", at = @At("HEAD"), ordinal = 1, argsOnly = true)
     private static int toFullStack(int i) {
-        if (Temp.name.equals("speed")) {
-            MekanismUnleashed.LOGGER.debug("MAX UPGRADES MIXIN APPLIED");
-            if (MekanismUnleashedConfig.maxUpgrades < 8)
-                MekanismUnleashed.LOGGER.error("CONFIG WAS TOO LATE");
-        }
         return Temp.name.equals("speed") || Temp.name.equals("energy") ? MekanismUnleashedConfig.maxUpgrades : i;
     }
 

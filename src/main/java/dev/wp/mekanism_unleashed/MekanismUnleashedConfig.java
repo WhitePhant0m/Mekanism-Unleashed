@@ -25,6 +25,5 @@ public class MekanismUnleashedConfig {
 
     public static void loadConfig(){
         maxUpgrades = MAX_UPGRADES.get();
-        MekanismUnleashed.LOGGER.debug("Config loaded, was it too late?");
     }
 }
