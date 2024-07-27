@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "dev.wp.mekanism_unleashed.mixin",
+  "refmap": "mixins.mekanismunleashed.refmap.json",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "DelayAccessor",
+    "MixinCachedRecipe",
+    "MixinDigiMiner",
+    "MixinFluidicPlenisher",
+    "MixinFormulaicAssemblicator",
+    "MixinMekanismUtils",
+    "MixinPump",
+    "MixinUpgrade",
+    "MixinUpgradeUtils"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
