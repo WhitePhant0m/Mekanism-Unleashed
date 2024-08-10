@@ -18,6 +18,8 @@ public abstract class MixinUpgrade {
 
     @ModifyVariable(method = "<init>", at = @At("HEAD"), ordinal = 1, argsOnly = true)
     private static int toFullStack(int i) {
+        if (MekanismUnleashedConfig.maxUpgrades < 8)
+            return Temp.name.equals("speed") || Temp.name.equals("energy") ? 32 : i;
         return Temp.name.equals("speed") || Temp.name.equals("energy") ? MekanismUnleashedConfig.maxUpgrades : i;
     }
 
