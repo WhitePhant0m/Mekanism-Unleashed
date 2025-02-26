@@ -6,6 +6,7 @@ import mekanism.common.tile.interfaces.IUpgradeTile;
 import mekanism.common.util.MekanismUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import mekanism.common.tile.machine.TileEntityOsmiumCompressor;
 
 @Mixin(value = MekanismUtils.class, remap = false)
 public class MixinMekanismUtils {
@@ -18,6 +19,8 @@ public class MixinMekanismUtils {
     public static int getTicks(IUpgradeTile tile, int def) {
         if (tile.supportsUpgrades()) {
             var d = def * Utils.time(tile);
+            if (tile.getClass() == TileEntityOsmiumCompressor.class) // Temp "fix" for osmium compressor to stop it from not using resources when too fast.
+                return Math.max(1, d >= 1 ? MathUtils.clampToInt(d) : MathUtils.clampToInt(1 / d) * -1); // Will implement a better fix later.
             return d >= 1 ? MathUtils.clampToInt(d) : MathUtils.clampToInt(1 / d) * -1;
         }
         return def;

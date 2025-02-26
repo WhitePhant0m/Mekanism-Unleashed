@@ -4,14 +4,16 @@ license="${mod_license}"
 
 [[mods]]
     modId="${mod_id}"
-    version="${mod_version}"
+version = "${minecraft_version}-${mod_version}"
     displayName="${mod_name}"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/mekanism-unleashed"
     credits="nin8995(author of Mekanism Tweaks)"
     authors="${mod_authors}"
     description='''${mod_description}'''
+
 [[mixins]]
 config="${mod_id}.mixins.json"
+
 [[dependencies.${mod_id}]]
     modId="neoforge"
     type="required"
