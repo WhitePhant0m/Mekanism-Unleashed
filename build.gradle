@@ -71,13 +71,6 @@ repositories {
             includeGroup "dev.emi"
         }
     }
-
-    maven {
-        url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
 }
 
 base {
@@ -142,9 +135,7 @@ dependencies {
     implementation("mekanism:Mekanism:${minecraft_version}-${mekanism_version}:all")
 
     runtimeOnly("dev.emi:emi-neoforge:${emi_version}+1.21.1")
-//    runtimeOnly("dev.architectury:architectury-neoforge:${architectury_version}")
-//    runtimeOnly("dev.ftb.mods:ftb-chunks-neoforge:${ftb_chunks_version}")
-//    runtimeOnly("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
+    runtimeOnly("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
 
     runtimeOnly("org.appliedenergistics:appliedenergistics2:${ae2_version}")
 }

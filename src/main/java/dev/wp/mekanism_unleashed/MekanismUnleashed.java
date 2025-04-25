@@ -28,7 +28,7 @@ public class MekanismUnleashed {
         });
         container.registerConfig(ModConfig.Type.STARTUP, MekanismUnleashedConfig.SPEC);
 
-        if(FMLEnvironment.dist == Dist.CLIENT)
+        if (FMLEnvironment.dist == Dist.CLIENT)
             container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
 }

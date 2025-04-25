@@ -3,10 +3,10 @@ package dev.wp.mekanism_unleashed.mixin;
 import dev.wp.mekanism_unleashed.Utils;
 import mekanism.api.math.MathUtils;
 import mekanism.common.tile.interfaces.IUpgradeTile;
+import mekanism.common.tile.machine.TileEntityOsmiumCompressor;
 import mekanism.common.util.MekanismUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import mekanism.common.tile.machine.TileEntityOsmiumCompressor;
 
 @Mixin(value = MekanismUtils.class, remap = false)
 public class MixinMekanismUtils {
@@ -32,8 +32,7 @@ public class MixinMekanismUtils {
      */
     @Overwrite
     public static long getEnergyPerTick(IUpgradeTile tile, long def) {
-        if (tile.supportsUpgrades())
-            return MathUtils.clampToLong(def *(Utils.electricity(tile)));
+        if (tile.supportsUpgrades()) return MathUtils.clampToLong(def * (Utils.electricity(tile)));
         return def;
     }
 
@@ -43,8 +42,16 @@ public class MixinMekanismUtils {
      */
     @Overwrite
     public static long getMaxEnergy(IUpgradeTile tile, long def) {
-        if (tile.supportsUpgrades())
-            return MathUtils.clampToLong(def *(Utils.capacity(tile)));
+        if (tile.supportsUpgrades()) return MathUtils.clampToLong(def * (Utils.capacity(tile)));
         return def;
+    }
+
+    /**
+     * @author WhitePhant0m
+     * @reason Fix for max energy(item form)
+     */
+    @Overwrite
+    public static long getMaxEnergy(int energyUpgrades, long def) {
+        return MathUtils.clampToLong(def * (Utils.capacity(energyUpgrades)));
     }
 }
