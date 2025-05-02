@@ -1,7 +1,6 @@
 {
   "required": true,
   "package": "dev.wp.mekanism_unleashed.mixin",
-  "refmap": "mixins.mekanismunleashed.refmap.json",
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
@@ -10,6 +9,8 @@
     "MixinDigiMiner",
     "MixinFluidicPlenisher",
     "MixinFormulaicAssemblicator",
+    "MixinItemMekaTool",
+    "MixinMekanismArmorMaterials",
     "MixinMekanismUtils",
     "MixinPump",
     "MixinUpgrade",
