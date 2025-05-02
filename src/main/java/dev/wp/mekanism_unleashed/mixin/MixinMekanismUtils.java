@@ -15,6 +15,21 @@ public class MixinMekanismUtils {
      * @reason translate multiple operations / tick as minus
      */
     @Overwrite
+    public static int getTicks(IUpgradeTile tile, int def) {
+        if (tile.supportsUpgrades()) {
+            int ticks = MathUtils.clampToInt(getTicksD(tile, def));
+            if (Utils.isCrafter(tile)) return Math.max(1, ticks);
+            else return ticks;
+        }
+        return def;
+    }
+
+
+    /**
+     * @author WhitePhant0m
+     * @reason translate multiple operations / tick as minus
+     */
+    @Overwrite
     public static double getTicksD(IUpgradeTile tile, int def) {
         var d = def * Utils.time(tile);
         return d >= 1 ? MathUtils.clampToInt(d) : MathUtils.clampToInt(1 / d) * -1;
