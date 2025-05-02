@@ -1,20 +1,15 @@
 package dev.wp.mekanism_unleashed.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import dev.wp.mekanism_unleashed.MekanismUnleashedConfig;
 import mekanism.common.item.gear.ItemMekaTool;
-import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(ItemMekaTool.class)
 public abstract class MixinItemMekaTool {
-    /**
-     * @author Mekanism
-     * @reason Allow Mekanism tools to be enchantable.
-     */
-    @Overwrite
-    public boolean isEnchantable(@NotNull ItemStack stack) {
+    @ModifyReturnValue(method = "isEnchantable", at = @At("RETURN"))
+    public boolean isEnchantable(boolean original) {
         return MekanismUnleashedConfig.enchantableMekaGear;
     }
 
