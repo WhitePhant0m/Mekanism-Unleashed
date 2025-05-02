@@ -3,7 +3,6 @@ package dev.wp.mekanism_unleashed.mixin;
 import dev.wp.mekanism_unleashed.Utils;
 import mekanism.api.math.MathUtils;
 import mekanism.common.tile.interfaces.IUpgradeTile;
-import mekanism.common.tile.machine.TileEntityOsmiumCompressor;
 import mekanism.common.util.MekanismUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -12,18 +11,24 @@ import org.spongepowered.asm.mixin.Overwrite;
 public class MixinMekanismUtils {
 
     /**
-     * @author nin8995
+     * @author WhitePhant0m
      * @reason translate multiple operations / tick as minus
      */
     @Overwrite
-    public static int getTicks(IUpgradeTile tile, int def) {
-        if (tile.supportsUpgrades()) {
-            var d = def * Utils.time(tile);
-            if (tile.getClass() == TileEntityOsmiumCompressor.class) // Temp "fix" for osmium compressor to stop it from not using resources when too fast.
-                return Math.max(1, d >= 1 ? MathUtils.clampToInt(d) : MathUtils.clampToInt(1 / d) * -1); // Will implement a better fix later.
-            return d >= 1 ? MathUtils.clampToInt(d) : MathUtils.clampToInt(1 / d) * -1;
-        }
-        return def;
+    public static double getTicksD(IUpgradeTile tile, int def) {
+        var d = def * Utils.time(tile);
+        return d >= 1 ? MathUtils.clampToInt(d) : MathUtils.clampToInt(1 / d) * -1;
+    }
+
+    /**
+     * @author WhitePhant0m
+     * @reason works
+     */
+    @Overwrite
+    public static int getOperationsPerTick(IUpgradeTile tile, int defTicks, int defaultOperations) {
+        double ticksD = getTicksD(tile, defTicks);
+        if (ticksD >= 1) return defaultOperations;
+        return MathUtils.clampToInt(Math.max(1, -ticksD) * defaultOperations);
     }
 
     /**

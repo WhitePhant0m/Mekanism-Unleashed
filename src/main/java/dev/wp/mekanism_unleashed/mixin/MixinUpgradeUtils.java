@@ -36,7 +36,7 @@ public class MixinUpgradeUtils {
     public static List<Component> getMultScaledInfo(IUpgradeTile tile, Upgrade upgrade) {
         var ret = new ArrayList<Component>();
         if (tile.supportsUpgrades() && upgrade.getMax() > 1) {
-            var effect = upgrade == Upgrade.ENERGY ? Utils.capacity(tile) : upgrade == Upgrade.SPEED ? 1/Utils.time(tile) : Math.pow(MekanismConfig.general.maxUpgradeMultiplier.get(), (float) tile.getComponent().getUpgrades(upgrade) / (float) upgrade.getMax());
+            var effect = upgrade == Upgrade.ENERGY ? Utils.capacity(tile) : upgrade == Upgrade.SPEED ? 1 / Utils.time(tile) : Math.pow(MekanismConfig.general.maxUpgradeMultiplier.get(), (float) tile.getComponent().getUpgrades(upgrade) / (float) upgrade.getMax());
             ret.add(MekanismLang.UPGRADES_EFFECT.translate(Utils.exponential(effect)));
         }
         return ret;

@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "DelayAccessor",
-    "MixinCachedRecipe",
     "MixinDigiMiner",
     "MixinFluidicPlenisher",
     "MixinFormulaicAssemblicator",

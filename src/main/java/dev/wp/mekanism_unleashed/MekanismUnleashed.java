@@ -24,7 +24,6 @@ public class MekanismUnleashed {
 
         bus.addListener((ModConfigEvent.Loading event) -> {
             MekanismUnleashedConfig.loadConfig();
-//            LOGGER.debug("Loaded config with maxUprades: {}", MekanismUnleashedConfig.maxUpgrades);
         });
         container.registerConfig(ModConfig.Type.STARTUP, MekanismUnleashedConfig.SPEC);
 
