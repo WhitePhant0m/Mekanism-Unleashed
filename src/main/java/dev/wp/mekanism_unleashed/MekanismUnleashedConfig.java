@@ -35,6 +35,11 @@ public class MekanismUnleashedConfig {
     public static int maxUpgrades;
     public static boolean enchantableMekaGear;
 
+    public static void loadConfig(com.electronwill.nightconfig.core.UnmodifiableConfig config) {
+        maxUpgrades = config.getIntOrElse("Tweaks.maxUpgrades", 32);
+        enchantableMekaGear = config.getOrElse("Tweaks.enchantableMekaGear", false);
+    }
+
     public static void loadConfig() {
         maxUpgrades = MAX_UPGRADES.get();
         enchantableMekaGear = ENCHANTABLE_MEKA_GEAR.get();

@@ -3,6 +3,7 @@
   "package": "dev.wp.mekanism_unleashed.mixin",
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_21",
+  "plugin": "dev.wp.mekanism_unleashed.mixin.MekanismUnleashedMixinPlugin",
   "mixins": [
     "DelayAccessor",
     "MixinDigiMiner",

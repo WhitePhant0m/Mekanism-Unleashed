@@ -20,7 +20,6 @@ public abstract class MixinUpgrade {
     @ModifyVariable(method = "<init>", at = @At("HEAD"), ordinal = 1, argsOnly = true)
     private static int toFullStack(int i) {
         if (Temp.name.equals("speed") || Temp.name.equals("energy")) {
-            MekanismUnleashedConfig.loadConfig();
             if (MekanismUnleashedConfig.maxUpgrades >= i) return MekanismUnleashedConfig.maxUpgrades;
             MekanismUnleashed.LOGGER.error("Didn't get proper value from config, defaulting to 32");
             return 32;
