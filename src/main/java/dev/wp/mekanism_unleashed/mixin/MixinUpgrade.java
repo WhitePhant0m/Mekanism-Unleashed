@@ -19,11 +19,25 @@ public abstract class MixinUpgrade {
 
     @ModifyVariable(method = "<init>", at = @At("HEAD"), ordinal = 1, argsOnly = true)
     private static int toFullStack(int i) {
-        if (Temp.name.equals("speed") || Temp.name.equals("energy")) {
-            if (MekanismUnleashedConfig.maxUpgrades >= i) return MekanismUnleashedConfig.maxUpgrades;
-            MekanismUnleashed.LOGGER.error("Didn't get proper value from config, defaulting to 32");
+        String upgradeName = Temp.name.toLowerCase();
+        
+        if (upgradeName.equals("speed")) {
+            if (MekanismUnleashedConfig.maxSpeedUpgrades >= i) {
+                return MekanismUnleashedConfig.maxSpeedUpgrades;
+            }
+            MekanismUnleashed.LOGGER.error("Didn't get proper value from config for speed upgrade, defaulting to 32");
             return 32;
         }
+        
+        if (upgradeName.equals("energy")) {
+            if (MekanismUnleashedConfig.maxEnergyUpgrades >= i) {
+                return MekanismUnleashedConfig.maxEnergyUpgrades;
+            }
+            MekanismUnleashed.LOGGER.error("Didn't get proper value from config for energy upgrade, defaulting to 32");
+            return 32;
+        }
+        
+        // All other upgrades use original value
         return i;
     }
 }

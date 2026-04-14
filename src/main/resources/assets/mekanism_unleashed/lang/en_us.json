@@ -1,5 +1,7 @@
 {
     "mekanism_unleashed.config.tweaks": "Tweaks",
-    "mekanism_unleashed.config.maxUpgrades": "Max Upgrades",
+    "mekanism_unleashed.config.upgrades": "Upgrade Limits",
+    "mekanism_unleashed.config.maxSpeedUpgrades": "Max Speed Upgrades",
+    "mekanism_unleashed.config.maxEnergyUpgrades": "Max Energy Upgrades",
     "mekanism_unleashed.config.enchantableMekaGear": "Enchantable Meka gear"
 }

@@ -4,7 +4,11 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class MekanismUnleashedConfig {
     private static final ModConfigSpec.Builder BUILDER;
-    private static final ModConfigSpec.IntValue MAX_UPGRADES;
+    
+    // Upgrade limits
+    private static final ModConfigSpec.IntValue MAX_SPEED_UPGRADES;
+    private static final ModConfigSpec.IntValue MAX_ENERGY_UPGRADES;
+    
     private static final ModConfigSpec.BooleanValue ENCHANTABLE_MEKA_GEAR;
     public static final ModConfigSpec SPEC;
 
@@ -16,10 +20,22 @@ public class MekanismUnleashedConfig {
         BUILDER = new ModConfigSpec.Builder();
         {
             BUILDER.translation(key("tweaks")).push("Tweaks");
-            MAX_UPGRADES = BUILDER
-                    .translation(key("maxUpgrades"))
-                    .comment("Maximum speed/energy upgrades a machine can accept, values higher than 32 are not recommended")
-                    .defineInRange("maxUpgrades", 32, 8, Integer.MAX_VALUE);
+            
+            // Mekanism core upgrade limits
+            BUILDER.translation(key("upgrades")).push("Upgrades");
+            
+            MAX_SPEED_UPGRADES = BUILDER
+                    .translation(key("maxSpeedUpgrades"))
+                    .comment("Maximum speed upgrades a machine can accept")
+                    .defineInRange("maxSpeedUpgrades", 32, 8, Integer.MAX_VALUE);
+            
+            MAX_ENERGY_UPGRADES = BUILDER
+                    .translation(key("maxEnergyUpgrades"))
+                    .comment("Maximum energy upgrades a machine can accept")
+                    .defineInRange("maxEnergyUpgrades", 32, 8, Integer.MAX_VALUE);
+            
+            BUILDER.pop(); // Pop Upgrades
+            
             ENCHANTABLE_MEKA_GEAR = BUILDER
                     .translation(key("enchantableMekaGear"))
                     .comment(
@@ -32,16 +48,19 @@ public class MekanismUnleashedConfig {
         SPEC = BUILDER.build();
     }
 
-    public static int maxUpgrades;
+    public static int maxSpeedUpgrades;
+    public static int maxEnergyUpgrades;
     public static boolean enchantableMekaGear;
 
     public static void loadConfig(com.electronwill.nightconfig.core.UnmodifiableConfig config) {
-        maxUpgrades = config.getIntOrElse("Tweaks.maxUpgrades", 32);
+        maxSpeedUpgrades = config.getIntOrElse("Tweaks.Upgrades.maxSpeedUpgrades", 32);
+        maxEnergyUpgrades = config.getIntOrElse("Tweaks.Upgrades.maxEnergyUpgrades", 32);
         enchantableMekaGear = config.getOrElse("Tweaks.enchantableMekaGear", false);
     }
 
     public static void loadConfig() {
-        maxUpgrades = MAX_UPGRADES.get();
+        maxSpeedUpgrades = MAX_SPEED_UPGRADES.get();
+        maxEnergyUpgrades = MAX_ENERGY_UPGRADES.get();
         enchantableMekaGear = ENCHANTABLE_MEKA_GEAR.get();
     }
 }

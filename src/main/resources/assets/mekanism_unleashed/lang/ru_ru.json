@@ -1,5 +1,7 @@
 {
     "mekanism_unleashed.config.tweaks": "Настройки",
-    "mekanism_unleashed.config.maxUpgrades": "Максимальное количество улучшений",
+    "mekanism_unleashed.config.upgrades": "Лимиты улучшений",
+    "mekanism_unleashed.config.maxSpeedUpgrades": "Макс. улучшений скорости",
+    "mekanism_unleashed.config.maxEnergyUpgrades": "Макс. энергетических улучшений",
     "mekanism_unleashed.config.enchantableMekaGear": "Зачаровываемая броня Meka"
 }
